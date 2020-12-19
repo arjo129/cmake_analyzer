@@ -1,0 +1,14 @@
+# CMake Analyzer
+
+The `cmake_analyzer` module contains two functions which can be used to create an AST (Abstract Syntax Tree) given a `cmakelist.txt`. Your code can then manipulate the AST 
+to output a new cmake file. This makes advanced code analysis possible for your tools. It also provides a building block for our intelligent cmake editing features possible. 
+
+## Usage
+
+To parse an AST one may simply call 
+```
+from cmake_analyzer.grammar import get_ast
+
+get_ast()
+```
+
