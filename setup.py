@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 from distutils.core import setup
+import setuptools
 
 setup(name='cmake_analyzer',
       version='0.1',
@@ -10,5 +11,5 @@ setup(name='cmake_analyzer',
       url='https://www.python.org/sigs/distutils-sig/',
       packages=['cmake_analyzer'],
       package_dir={'cmake_analyzer': 'cmake_analyzer'},
-      test_suite="tests"
+      test_suite='tests'
     )
