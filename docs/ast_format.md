@@ -11,21 +11,25 @@ An AST is essentially a dictionary. Each node of the dictionary contains a
 * `line_comment` - A line comment
 * `bracket_comment` - A Bracket Comment
 * `bracket_args` - A Bracket Argument
-
+* `command` - A command
+* `whitespace` - A set of white spaces
+* `lparenthesis` - A left parenthesis
+* `rparenthesis` - A right parenthesis
+* `argument_list` - An argument list
 
 ## Comments
 
 CMake files have two comment formats: The line comment and a bracket 
 comment. A line comment looks something like:
 
-```
+```CMake
 # Some comment
 ```
 
 It starts witha a "#" and ends with a new line (or EOF). When the above is 
 passed to the `get_ast` function it will return a dict like:
 
-```
+```python
 {
     "type": "comment", 
     "comment": "line", 
@@ -37,13 +41,13 @@ passed to the `get_ast` function it will return a dict like:
 ```
 
 Bracket comments on the other hand look something like this:
-```
+```CMake
 #[=[Hello
  world]=]
 ```
 Note that there must be an equal number of equals sign. The corresponding 
 output is something like this:
-```
+```python
 {
     "type": "comment", 
     "comment": "bracket", 
@@ -61,3 +65,35 @@ output is something like this:
 
 ## Commands
 
+Commands make up a large part of the `cmake` macro language. An example command
+looks something like:
+
+```CMake
+find_package ( CATKIN_PACKAGES
+roscpp
+    #octomap_msgs
+    )
+```
+This results in the following parse tree.
+```python
+{
+    'command': 'find_package', 
+    'type': 'command', 
+    'separator': {'body': ' ', 'type': 'whitespace'}, 
+    'parameters': {
+        'body': [
+            {'type': 'lparenthesis'}, 
+            {'body': ' ', 'type': 'whitespace'}, 
+            {'body': {'body': 'CATKIN_PACKAGES', 'type': 'unquoted_argument'}, 'type': 'argument', 'argument_type': 'unquoted'}, 
+            {'body': '\n', 'type': 'whitespace'}, 
+            {'body': {'body': 'roscpp', 'type': 'unquoted_argument'}, 'type': 'argument', 'argument_type': 'unquoted'}, 
+            {'body': '\n\t', 'type': 'whitespace'}, 
+            {'comment': 'line', 'body': {'body': 'octomap_msgs', 'type': 'line_comment'}, 'type': 'comment'}, 
+            {'body': '\t', 'type': 'whitespace'}, 
+            {'type': 'rparenthesis'}
+            ],
+        'type': 'argument_list'
+        }
+}
+```
+Notice the AST contains both whitespace and 

@@ -18,5 +18,6 @@ with open("CMakeLists.txt") as f:
 ```
 
 ## Additional Documentation
-For additional documentation see the `examples` folder or the
+For additional documentation see the `examples` folder or the 
+[ast format](docs/ast_format.md) reference. 
 
