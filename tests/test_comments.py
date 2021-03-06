@@ -25,7 +25,7 @@ class TestComment(unittest.TestCase):
         res, data = parse_item("#Hello world\n")
         self.assertEqual(res, CombinatorState.FINISHED)
         self.assertDictEqual(data, {"type": "comment", "comment": "line", "body":{
-            "type": "line_comment", "body": "Hello world"
+            "type": "line_comment", "body": "Hello world", "terminates": "\n"
         }})
 
     def test_not_comment(self):

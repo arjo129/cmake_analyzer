@@ -13,10 +13,17 @@ class CombinatorState(enum.Enum):
     IN_PROGRESS = 1 #When the parser is parsing
     ERROR = -1 #When the parser fails
 
+
+"""
+A place holder class representing the end of file
+"""
+class EOF:
+    def __init__(self):
+        pass
+
 """
 This section defines the rules for a bracketed argument
 """
-
 class BracketOpen:
     def __init__(self):
         self.state = "EXPECT_BRACE"
@@ -257,13 +264,18 @@ class LineComment:
 
         elif self.state == "EXPECT_BODY":
             if next_char == "\n":
-                return CombinatorState.FINISHED, {"type": "line_comment", "body": self.body}
+                return CombinatorState.FINISHED, {"type": "line_comment", "body": self.body, "terminates": next_char}
+            elif isinstance(next_char, EOF):
+                return CombinatorState.FINISHED, {"type": "line_comment", "body": self.body, "terminates": "EOF"}
             else:
                 self.body += next_char
                 return CombinatorState.IN_PROGRESS, None
 
     def code_gen(self, data):
-        return "#" + data["body"] + "\n"
+        if data["terminates"] != "EOF":
+            return "#" + data["body"] + "\n"
+        else:
+            return "#" + data["body"]
 
 
 """

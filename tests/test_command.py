@@ -25,7 +25,7 @@ class TestCommandArguments(unittest.TestCase):
                         {'body': '\n', 'type': 'whitespace'}, 
                         {'body': {'body': 'roscpp', 'type': 'unquoted_argument'}, 'type': 'argument', 'argument_type': 'unquoted'}, 
                         {'body': '\n\t', 'type': 'whitespace'}, 
-                        {'comment': 'line', 'body': {'body': 'octomap_msgs', 'type': 'line_comment'}, 'type': 'comment'}, 
+                        {'comment': 'line', 'body': {'body': 'octomap_msgs', 'type': 'line_comment', 'terminates': '\n'}, 'type': 'comment'}, 
                         {'body': '\t', 'type': 'whitespace'}, 
                         {'type': 'rparenthesis'}], 'type': 'argument_list'}})
 
@@ -44,7 +44,7 @@ class TestCommandArguments(unittest.TestCase):
                         {'body': '\n', 'type': 'whitespace'}, 
                         {'body': {'body': 'roscpp', 'type': 'unquoted_argument'}, 'type': 'argument', 'argument_type': 'unquoted'}, 
                         {'body': '\n\t', 'type': 'whitespace'}, 
-                        {'comment': 'line', 'body': {'body': 'octomap_msgs', 'type': 'line_comment'}, 'type': 'comment'}, 
+                        {'comment': 'line', 'body': {'body': 'octomap_msgs', 'type': 'line_comment', 'terminates': '\n'}, 'type': 'comment'}, 
                         {'body': '\t', 'type': 'whitespace'}, 
                         {'type': 'rparenthesis'}], 'type': 'argument_list'}})
 

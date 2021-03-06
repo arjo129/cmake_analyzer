@@ -13,7 +13,7 @@ class TestLineComment(unittest.TestCase):
         #normal operation
         res, data = parse_item("#Hello world\n")
         self.assertEqual(res, CombinatorState.FINISHED)
-        self.assertDictEqual(data, {'body': 'Hello world', 'type': 'line_comment'})
+        self.assertDictEqual(data, {'body': 'Hello world', 'type': 'line_comment', 'terminates': '\n'})
 
     def test_line_comment_not_comment(self):
         #normal operation
