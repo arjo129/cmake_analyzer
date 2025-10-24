@@ -14,9 +14,14 @@
 # limitations under the License.
 
 from setuptools import setup, find_packages
+import os
 
-with open("readme.md", "r", encoding="utf-8") as fh:
-    long_description = fh.read()
+# Read the long description from readme.md if it exists
+long_description = ''
+readme_path = os.path.join(os.path.dirname(__file__), 'readme.md')
+if os.path.exists(readme_path):
+    with open(readme_path, "r", encoding="utf-8") as fh:
+        long_description = fh.read()
 
 setup(
     name='cmake_analyzer',
