@@ -16,12 +16,15 @@
 from setuptools import setup, find_packages
 import os
 
-# Read the long description from readme.md if it exists
+# Read the long description from readme file if it exists
 long_description = ''
-readme_path = os.path.join(os.path.dirname(__file__), 'readme.md')
-if os.path.exists(readme_path):
-    with open(readme_path, "r", encoding="utf-8") as fh:
-        long_description = fh.read()
+readme_files = ['readme.md', 'README.md', 'README.rst', 'README.txt', 'README']
+for readme_file in readme_files:
+    readme_path = os.path.join(os.path.dirname(__file__), readme_file)
+    if os.path.exists(readme_path):
+        with open(readme_path, "r", encoding="utf-8") as fh:
+            long_description = fh.read()
+        break
 
 setup(
     name='cmake_analyzer',
