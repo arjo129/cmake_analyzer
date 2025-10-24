@@ -2,3 +2,32 @@ cmake_analyzer.egg-info/*
 
 */__pycache__/*
 */__pycache__/*
+
+# Build artifacts
+build/
+dist/
+*.egg-info/
+.eggs/
+*.egg
+*.whl
+
+# Python cache
+*.pyc
+__pycache__/
+*.pyo
+*.pyd
+.Python
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.nox/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
